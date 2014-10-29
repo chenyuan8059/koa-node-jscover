@@ -1,0 +1,13 @@
+{
+  "name": "koa-node-jscover",
+  "version": "1.0.0",
+  "author": "yiminghe <yiminghe@gmail.com>",
+  "engines": {
+    "node": ">=0.11"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yiminghe/koa-node-jscover.git"
+  }
+}
