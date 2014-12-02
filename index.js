@@ -32,7 +32,7 @@ module.exports = function (option) {
                 encoding: 'utf-8'
             });
         }
-        if(!option.onlyLoad){
+        if(!option.onlyLoad || !option.onlyLoad.call(this)){
             content = jscover.instrument(content, name, {
                 excludeHeader: true
             });
