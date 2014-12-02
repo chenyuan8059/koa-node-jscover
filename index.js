@@ -32,9 +32,11 @@ module.exports = function (option) {
                 encoding: 'utf-8'
             });
         }
-        content = jscover.instrument(content, name, {
-            excludeHeader: true
-        });
+        if(!option.onlyLoad){
+            content = jscover.instrument(content, name, {
+                excludeHeader: true
+            });
+        }
         this.body = content;
         if (option.next && option.next.call(this)) {
             yield *next;
