@@ -10,6 +10,9 @@ module.exports = function (option) {
     if (originalSrc) {
       var srcPath = Path.join(cwd, originalSrc[1]);
       this.set('Content-Type', 'application/javascript;charset=utf-8');
+      if (!fs.existsSync(srcPath)) {
+        srcPath = srcPath.replace(/\.js$/, '.jsx');
+      }
       this.body = fs.readFileSync(srcPath, {
         encoding: 'utf-8'
       });
