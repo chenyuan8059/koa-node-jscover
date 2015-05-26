@@ -4,6 +4,7 @@ var cwd = process.cwd();
 
 module.exports = function (option) {
   var jscover = option.jscover;
+  var originalFileLoader = option.originalFileLoader;
   return function *(next) {
     var path = this.path;
     var originalSrc = path.match(/\/node-jscover\/lib\/front-end\/original-src\/(.+)/);
@@ -13,9 +14,13 @@ module.exports = function (option) {
       if (!fs.existsSync(srcPath)) {
         srcPath = srcPath.replace(/\.js$/, '.jsx');
       }
-      this.body = fs.readFileSync(srcPath, {
-        encoding: 'utf-8'
-      });
+      if (originalFileLoader) {
+        originalFileLoader(this, srcPath);
+      } else {
+        this.body = fs.readFileSync(srcPath, {
+          encoding: 'utf-8'
+        });
+      }
       return;
     }
     var pathname;
